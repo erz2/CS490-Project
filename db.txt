@@ -1,0 +1,64 @@
+CREATE TABLE Users(
+	ID VARCHAR(4),
+	Password VARCHAR(20),
+	FirstName VARCHAR(25),
+	LastName VARCHAR(25),
+	UserType VARCHAR(15),
+	PRIMARY KEY(ID)
+) ENGINE = InnoDB;
+
+CREATE TABLE StudentSchedule(
+	StudentID VARCHAR(4),
+	CourseID VARCHAR(11),
+	PRIMARY KEY(StudentID, CourseID)
+) ENGINE = InnoDB;
+
+CREATE TABLE Classes(
+	CourseID VARCHAR(11),
+	CourseName VARCHAR(40),
+	CourseCredits INT(1),
+	ProfessorID VARCHAR(4),
+	PRIMARY KEY(CourseID)
+) ENGINE = InnoDB;
+
+CREATE TABLE Exams(
+	ExamIndex INT(3) AUTO_INCREMENT,
+	ExamTitle VARCHAR(40),
+	CourseID VARCHAR(11),
+	NumberOfQuestions INT(3),
+	ExamData TEXT,
+	Weights TEXT,
+	TotalPoints INT(3),
+	StartDate DATE,
+	StartTime TIME,
+	DueDate DATE,
+	DueTime TIME,
+	TimeLimit TIME,
+	Type VARCHAR(10),
+	PRIMARY KEY(ExamIndex)
+) ENGINE = InnoDB;
+
+CREATE TABLE Questions(
+	QuestionIndex INT(3) AUTO_INCREMENT,
+	CourseID VARCHAR(11),
+	QuestionType VARCHAR(10),
+	Question TEXT,
+	Answer1 TEXT,
+	Answer2 TEXT,
+	Answer3 TEXT,
+	Answer4 TEXT,
+	CorrectAnswer TEXT,
+	QuestionCorrectCount INT(3),
+	QuestionAnsweredCount INT(3),
+	PRIMARY KEY(QuestionIndex)
+) ENGINE = InnoDB;
+
+CREATE TABLE Grades(
+	StudentID VARCHAR(4),
+	CourseID VARCHAR(11),
+	ExamTitle VARCHAR(40),
+	PointsEarned INT(3),
+	PointsPossible INT(3),
+	ExamResponses TEXT,
+	PRIMARY KEY(StudentID, CourseID, ExamTitle)
+) ENGINE = InnoDB;
